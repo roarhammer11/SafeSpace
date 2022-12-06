@@ -1,12 +1,14 @@
+import {useNavigate} from "react-router-dom";
 const Button = (props) => {
-  function nextPage() {
-    window.location.replace(props.location);
+  const navigate = useNavigate();
+  function handleClick(e) {
+    navigate(e);
   }
   return (
     <button
       type="button"
       className="btn btn-primary btn-lg w-100"
-      onClick={nextPage}
+      onClick={() => handleClick(props.location)}
     >
       {props.name}
     </button>
