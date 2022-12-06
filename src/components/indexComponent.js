@@ -1,16 +1,10 @@
 import React, {Component} from "react";
+import Button from "./non-route-components/buttonComponent";
 class Index extends Component {
-  constructor() {
-    super();
-    this.nextPage = this.nextPage.bind(this);
-  }
   componentDidMount() {}
 
   componentWillUnmount() {}
 
-  nextPage() {
-    window.location.replace("/page2");
-  }
   render() {
     return (
       <div className="App-Container container-fluid h-100 d-flex">
@@ -37,20 +31,12 @@ class Index extends Component {
             </h1>
 
             <h5>a judement free place</h5>
-            <button
-              type="button"
-              className="btn btn-primary btn-lg  w-25 sign-up-button"
-              onClick={this.nextPage}
-            >
-              Sign Up
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary btn-lg  w-25"
-              onClick={this.nextPage}
-            >
-              Login
-            </button>
+            <div className="sign-up-button w-25">
+              <Button name="Sign up" location="/Dashboard" />
+            </div>
+            <div className="w-25">
+              <Button name="Log in" location="/Dashboard" />
+            </div>
           </div>
         </div>
       </div>

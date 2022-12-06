@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Component3 from "./non-route-components/nonPageComponent";
+import Button from "./non-route-components/buttonComponent";
 class Page2 extends Component {
   constructor() {
     super();
@@ -9,7 +9,7 @@ class Page2 extends Component {
     };
   }
 
-  nextPage() {  
+  nextPage() {
     window.location.replace("/");
   }
 
@@ -22,7 +22,7 @@ class Page2 extends Component {
       <div>
         <center>
           <h1>{this.state.sampleString}</h1>
-          <Component3 />
+          <Button />
           <button onClick={this.nextPage}> To index </button>
         </center>
       </div>

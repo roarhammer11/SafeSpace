@@ -15,7 +15,7 @@ h1 {
 .right {
   margin-top: 13rem;
 }
-.sign-up-button {
+.sign-up-button > button {
   margin-top: 8rem;
   margin-bottom: 3rem;
 }
