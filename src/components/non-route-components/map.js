@@ -23,7 +23,7 @@ export default function GoogleMaps() {
   return (
     <GoogleMap
       mapContainerStyle={mapContainerStyle}
-      zoom={11}
+      zoom={12}
       center={center}
     />
   );

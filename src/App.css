@@ -27,6 +27,26 @@ h1 {
   width: 30%;
 }
 
+.messages-container > div > img {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+.messages-container > div {
+  align-items: center;
+}
+
+.disorder-filter-container {
+  width: 50%;
+}
+
+.disorder-filter-container > p {
+  font-size: 24px;
+}
+
+.disorder-filter-container > center > h1 {
+  font-size: 50px;
+}
+
 #user-panel > button {
   margin: 0.2rem;
   padding: 0.8rem;
