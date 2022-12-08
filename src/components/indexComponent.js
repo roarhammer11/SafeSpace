@@ -25,7 +25,7 @@ const Index = () => {
             <br />
           </h1>
 
-          <h5>a judement free place</h5>
+          <h5>a judgment free place</h5>
           <div className="sign-up-button w-25">
             <Button name="Sign up" location="/Dashboard" />
           </div>
