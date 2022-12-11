@@ -1,7 +1,7 @@
-import dbConn from "../../client/src/config/db.config";
+var dbConn = require("../config/db.config");
 
 //Account object create
-export class Account {
+class Account {
   constructor(account) {
     this.userName = account.userName;
     this.email = account.email;
@@ -21,3 +21,5 @@ export class Account {
     });
   }
 }
+
+module.exports = Account;

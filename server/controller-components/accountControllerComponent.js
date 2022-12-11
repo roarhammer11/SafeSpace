@@ -1,4 +1,4 @@
-import {Account} from "../model-components/accountModelComponent";
+const Account = require("../model-components/accountModelComponent");
 
 exports.create = function (req, res) {
   const newAccount = new Account(req.body);
