@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 var dbConn = require("../config/db.config");
 
 //Account object create
@@ -16,10 +16,40 @@ class Account {
         console.log("error: ", err);
         result(err, null);
       } else {
-        console.log(res.insertId);
+        // console.log(res.insertId);
         result(null, res.insertId);
       }
     });
+  }
+  //query a single entry
+  static findById(accountId, result) {
+    dbConn.query(
+      "SELECT * FROM accounts WHERE accountId=?",
+      accountId,
+      function (err, res) {
+        if (err) {
+          console.log(err, null);
+        } else {
+          result(null, res);
+        }
+      }
+    );
+  }
+  static findByEmail(email, result) {
+    // console.log(typeof email);
+    dbConn.query(
+      "SELECT * FROM accounts WHERE email=?",
+      email,
+      function (err, res) {
+        if (err) {
+          console.log(err, null);
+        } else {
+          // console.log(res);
+          result(null, res);
+        }
+      }
+    );
+    // console.log(result);
   }
 }
 
