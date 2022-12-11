@@ -19,25 +19,31 @@ const Index = () => {
 
   const handleSignUpFormSubmit = (event) => {
     event.preventDefault();
-    fetch("/api/signUp", {
-      method: "POST",
-      body: JSON.stringify(inputs),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Successfuly Added " + inputs.userType + " to the database.");
-        } else if (response.status === 409) {
-          alert("Email already exists");
-        } else {
-          alert("Server could not process at the moment");
-        }
+    const confirmPassword = document.getElementById("confirmPassword");
+    if (confirmPassword !== inputs.password) {
+      alert("Password mismatch");
+    } else {
+      fetch("/api/signUp", {
+        method: "POST",
+        body: JSON.stringify(inputs),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          if (response.ok) {
+            alert("Successfuly Added " + inputs.userType + " to the database.");
+          } else if (response.status === 409) {
+            alert("Email already exists");
+          } else {
+            alert("Server could not process at the moment");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
     console.log(inputs);
   };
 
@@ -116,6 +122,7 @@ const Index = () => {
                   type="password"
                   name="confirmPassword"
                   placeholder="Confirm Password"
+                  id="confirmPassword"
                   required
                 />
                 <button>Sign up</button>
