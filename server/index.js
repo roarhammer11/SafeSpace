@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 //Require employee routes
 const websiteRoutes = require("./route-components/routeComponent");
 //Using as middleware
-app.use("/", websiteRoutes);
+app.use("/api", websiteRoutes);
 // Listen for requests
 app.listen(port, () => {
   console.log(`Server is listening to port ${port}`);

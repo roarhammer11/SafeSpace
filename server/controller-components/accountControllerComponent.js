@@ -1,8 +1,10 @@
+"use strict"
 const Account = require("../model-components/accountModelComponent");
 
 exports.create = function (req, res) {
   const newAccount = new Account(req.body);
   //handles null error
+  console.log(req.body);
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res
       .status(400)

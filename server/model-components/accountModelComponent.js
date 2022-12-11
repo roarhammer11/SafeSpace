@@ -1,3 +1,4 @@
+"use strict"
 var dbConn = require("../config/db.config");
 
 //Account object create
