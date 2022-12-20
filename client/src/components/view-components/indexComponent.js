@@ -40,9 +40,36 @@ const Index = () => {
         if (response.status === 200) {
           alert("Successfuly Added " + inputs.userName + " to the database.");
         } else if (response.status === 409) {
-          alert("Email already exists");
+          alert("Email already exists.");
         } else {
           alert("Server could not process at the moment");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  const handleLoginFormSubmit = (event) => {
+    event.preventDefault();
+    loginAccount();
+  };
+
+  function loginAccount() {
+    fetch("/api/login", {
+      method: "POST",
+      body: JSON.stringify(inputs),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("Successfuly Added " + inputs.userName + " to the database.");
+        } else if (response.status === 409) {
+          console.log("Email already existsss ugh");
+        } else {
+          console.log("Error u hoe ");
         }
       })
       .catch((error) => {
@@ -100,7 +127,7 @@ const Index = () => {
                 <input
                   type="text"
                   name="userName"
-                  placeholder="User name"
+                  placeholder="Username"
                   value={inputs.userName || ""}
                   onChange={handleSignUpFormChange}
                   required
@@ -133,7 +160,7 @@ const Index = () => {
             </div>
 
             <div className="login">
-              <form>
+              <form onSubmit={handleLoginFormSubmit}>
                 <label htmlFor="chk" aria-hidden="true">
                   Login
                 </label>

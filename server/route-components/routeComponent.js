@@ -7,5 +7,6 @@ router.get("/accounts/:accountId", accountController.findById);
 // router.get("/", (req, res) => {
 //   res.json({message: "Hello from server!"});
 // });
+router.post("/login", accountController.login);
 
 module.exports = router;
