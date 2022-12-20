@@ -1,4 +1,5 @@
 // import Button from "./non-route-components/buttonComponent";
+import "../css-components/dashboard.css";
 import UserPanel from "../non-route-components/userPanelComponent";
 const Dashboard = () => {
   return (
