@@ -2,19 +2,60 @@
 import "../css-components/dashboard.css";
 import React from 'react';
 import UserPanel from "../non-route-components/userPanelComponent";
+import {useState} from "react";
 const Dashboard = () => {
+  const [inputs, setInputs] = useState({});
+
   const textSize = {
     fontSize: '1.5rem',
   };
+
+  const handleMessageFormChange = (event) => {
+    const name = event.target.name;
+    var value;
+    if (name === "userType") {
+      value = event.target.options[event.target.selectedIndex].text;
+    } else {
+      value = event.target.value;
+    }
+    setInputs((values) => ({...values, [name]: value}));
+  };
+
+  const handlePostSubmit = (event) => {
+    event.preventDefault();
+    handlePost();
+  };
+
+  function handlePost() {
+    fetch("/api/createPost", {
+      method: "POST",
+      body: JSON.stringify(inputs),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("Successfuly published your post!");
+        } else if (response.status === 409) {
+          alert("Email already exists.");
+        } else {
+          alert("Server could not process at the moment");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     /* html by https://codepen.io/e_javieer/pen/jOKvqyw */
     <div className="App-Container container-fluid h-100">
       <section className="create-post">
         <img className="create-post__avatar" src="https://raw.githubusercontent.com/Javieer57/create-post-component/design/2010/img/avatar-tumblr.png" alt="" />
-        <form id="create-post-form" className="create-post__form" action="">
+        <form id="create-post-form" className="create-post__form" onSubmit={handlePostSubmit}>
           <div className="create-post__text-wrap">
-            <textarea style = {textSize} aria-label="What's on your mind?" name="post-text" id="create-post-txt" oninput="this.parentNode.dataset.replicatedValue = this.value" placeholder="Write something about you..."></textarea>
+            <textarea style = {textSize} aria-label="What's on your mind?" name="message" value={inputs.message || ""} onChange={handleMessageFormChange} id="create-post-txt" placeholder="What's on your mind?"></textarea>
           </div>
 
           <div className="create-post__media-wrap" id="create-post-media-wrap"></div>
@@ -47,7 +88,7 @@ const Dashboard = () => {
                 Video
               </button>
             </div>
-            <button className="create-post__submit" type="submit">Publish</button>
+            <button className="create-post__submit">Publish</button>
           </div>
         </form>
       </section>

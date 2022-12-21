@@ -50,33 +50,6 @@ const Index = () => {
       });
   }
 
-  const handleLoginFormSubmit = (event) => {
-    event.preventDefault();
-    loginAccount();
-  };
-
-  function loginAccount() {
-    fetch("/api/login", {
-      method: "POST",
-      body: JSON.stringify(inputs),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          alert("Successfuly Added " + inputs.userName + " to the database.");
-        } else if (response.status === 409) {
-          console.log("Email already existsss ugh");
-        } else {
-          console.log("Error u hoe ");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
   return (
     <div className="App-Container container-fluid h-100 d-flex">
       <div className="left w-50 p-3 ms-5 h-100">
@@ -160,7 +133,7 @@ const Index = () => {
             </div>
 
             <div className="login">
-              <form onSubmit={handleLoginFormSubmit}>
+              <form>
                 <label htmlFor="chk" aria-hidden="true">
                   Login
                 </label>

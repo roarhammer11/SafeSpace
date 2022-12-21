@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const accountController = require("../controller-components/accountControllerComponent");
+const postController = require("../controller-components/postControllerComponent");
 
 router.post("/signUp", accountController.create);
 router.get("/accounts/:accountId", accountController.findById);
 // router.get("/", (req, res) => {
 //   res.json({message: "Hello from server!"});
 // });
-router.post("/login", accountController.login);
+router.post("/createPost", postController.create);
 
 module.exports = router;
