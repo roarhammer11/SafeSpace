@@ -9,5 +9,6 @@ router.get("/accounts/:accountId", accountController.findById);
 //   res.json({message: "Hello from server!"});
 // });
 router.post("/createPost", postController.create);
+router.get("/posts", postController.findAll);
 
 module.exports = router;

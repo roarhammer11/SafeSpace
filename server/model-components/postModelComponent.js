@@ -19,4 +19,17 @@ Post.create = function (newPost, result) {
     });
 };
 
+Post.findAll = function(result) {
+    dbConn.query("SELECT * FROM posts", function(err,res) {
+        if(err){
+            console.log("error: ",err);
+            result(null, err);
+        }
+        else{
+            console.log('posts: ',res);
+            result(null,res);
+        }
+    });
+};
+
 module.exports = Post;

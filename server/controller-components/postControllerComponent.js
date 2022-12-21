@@ -8,7 +8,17 @@ exports.create = function(req,res) {
         if(err){
             res.send(err);
         }
-        console.log("successss");
         res.json({error:false,status:200,message: "Post added succesfully!!!",data:post});
+    });
+};
+
+exports.findAll = function(req,res) {
+    Post.findAll(function(err,post){
+        console.log('controller')
+        if (err){
+            res.send(err);
+        }
+        console.log('res',post);
+        res.send({status:200,data: post});
     });
 };
