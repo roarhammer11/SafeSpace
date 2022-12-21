@@ -9,6 +9,7 @@ router.get("/accounts/:accountId", accountController.findById);
 //   res.json({message: "Hello from server!"});
 // });
 router.post("/createPost", postController.create);
+// http://localhost:3001/api/posts/
 router.get("/posts", postController.findAll);
 
 module.exports = router;

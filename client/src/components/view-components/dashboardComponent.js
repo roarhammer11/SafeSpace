@@ -3,6 +3,7 @@ import "../css-components/dashboard.css";
 import React from 'react';
 import UserPanel from "../non-route-components/userPanelComponent";
 import {useState} from "react";
+import PostFetching from './PostFetching';
 const Dashboard = () => {
   const [inputs, setInputs] = useState({});
 
@@ -92,6 +93,8 @@ const Dashboard = () => {
           </div>
         </form>
       </section>
+
+      <PostFetching />
 
       <section id="posts-container">
         <article className="post">
