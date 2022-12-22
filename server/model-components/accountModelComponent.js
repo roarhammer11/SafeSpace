@@ -16,7 +16,6 @@ class Account {
         console.log("error: ", err);
         result(err, null);
       } else {
-        // console.log(res.insertId);
         result(null, res.insertId);
       }
     });
@@ -36,7 +35,6 @@ class Account {
     );
   }
   static findByEmail(email, result) {
-    // console.log(typeof email);
     dbConn.query(
       "SELECT * FROM accounts WHERE email=?",
       email,
@@ -44,12 +42,10 @@ class Account {
         if (err) {
           console.log(err, null);
         } else {
-          // console.log(res);
           result(null, res);
         }
       }
     );
-    // console.log(result);
   }
 }
 
