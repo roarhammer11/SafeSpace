@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2022 at 09:19 PM
+-- Generation Time: Dec 22, 2022 at 04:15 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -66,6 +66,7 @@ INSERT INTO `accounts` (`accountId`, `userName`, `email`, `password`, `userType`
 
 CREATE TABLE `posts` (
   `post_id` int(11) NOT NULL,
+  `accountId` int(11) NOT NULL,
   `message` varchar(500) NOT NULL,
   `image` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -74,15 +75,15 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`post_id`, `message`, `image`) VALUES
-(1, 'testtdaasfdh', NULL),
-(2, 'another test', NULL),
-(3, 'third test', NULL),
-(4, 'hello world', NULL),
-(5, 'hiiii', NULL),
-(6, 'slay', NULL),
-(7, 'last test', NULL),
-(8, 'last last teset', NULL);
+INSERT INTO `posts` (`post_id`, `accountId`, `message`, `image`) VALUES
+(1, 2, 'testtdaasfdh', NULL),
+(2, 6, 'another test', NULL),
+(3, 7, 'third test', NULL),
+(4, 8, 'hello world', NULL),
+(5, 9, 'hiiii', NULL),
+(6, 10, 'slay', NULL),
+(7, 11, 'last test', NULL),
+(8, 12, 'last last teset', NULL);
 
 --
 -- Indexes for dumped tables
@@ -98,7 +99,8 @@ ALTER TABLE `accounts`
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`post_id`);
+  ADD PRIMARY KEY (`post_id`),
+  ADD KEY `accountId` (`accountId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -114,7 +116,17 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `fk_accountId` FOREIGN KEY (`accountId`) REFERENCES `accounts` (`accountId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
