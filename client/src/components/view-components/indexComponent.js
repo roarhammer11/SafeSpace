@@ -50,6 +50,37 @@ const Index = () => {
       });
   }
 
+  const handleLoginFormChange = (event) => {
+    const name = event.target.name;
+    var value = event.target.value;
+    setInputs((values) => ({...values, [name]: value}));
+  };
+
+  const handleLoginFormSubmit = (event) => {
+    event.preventDefault();
+    loginAccount();
+  };
+
+  function loginAccount() {
+    fetch("/api/login", {
+      method: "POST",
+      body: JSON.stringify(inputs),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("Successfuly logged in!.");
+        } else {  
+          alert("Server could not process at the moment :<");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <div className="App-Container container-fluid h-100 d-flex">
       <div className="left w-50 p-3 ms-5 h-100">
@@ -133,7 +164,7 @@ const Index = () => {
             </div>
 
             <div className="login">
-              <form>
+              <form onSubmit={handleLoginFormSubmit}>
                 <label htmlFor="chk" aria-hidden="true">
                   Login
                 </label>
@@ -142,12 +173,16 @@ const Index = () => {
                   name="email"
                   placeholder="Email"
                   required=""
+                  onChange={handleLoginFormChange}
+                  value={inputs.email || ""}
                 />
                 <input
                   type="password"
-                  name="pswd"
+                  name="password"
                   placeholder="Password"
                   required=""
+                  onChange={handleLoginFormChange}
+                  value={inputs.password || ""}
                 />
                 <button>Login</button>
               </form>

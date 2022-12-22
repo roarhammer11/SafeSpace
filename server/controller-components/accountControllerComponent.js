@@ -1,5 +1,4 @@
 "use strict";
-const { findByEmailAndPassword } = require("../model-components/accountModelComponent");
 const Account = require("../model-components/accountModelComponent");
 const findByEmail = (req, res) => {
   Account.findByEmail(req, function (err, account) {
@@ -55,4 +54,15 @@ exports.findById = function (req, res) {
   });
 };
 
+exports.findByEmailAndPassword = function (req, res) {
+  const newAccount = new Account(req.body);
+
+  Account.findByEmailAndPassword(newAccount["email"], newAccount["password"], function (err, count) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(200);
+    }
+  });
+};
 
