@@ -182,58 +182,9 @@ const Dashboard = () => {
         </form>
       </section>
 
-      <PostFetching />
-
       <section id="posts-container">
         <article className="post">
-          <img
-            className="post__avatar"
-            src="https://raw.githubusercontent.com/Javieer57/create-post-component/design/2010/img/avatar-tumblr.png"
-            alt=""
-          />
-
-          <div className="post__content">
-            <header className="post__header">
-              <p className="post__user">galactiqangel</p>
-
-              <div className="post__meta">
-                <p className="post__reblogs">3,908</p>
-
-                <button className="post__header-btn">
-                  <img
-                    src="https://raw.githubusercontent.com/Javieer57/create-post-component/43c8008a45b699957d2070cc23362f1953c65d78/icons/reblog-tumblr.svg"
-                    alt=""
-                  />
-                </button>
-                <button className="post__header-btn">
-                  <img
-                    src="https://raw.githubusercontent.com/Javieer57/create-post-component/43c8008a45b699957d2070cc23362f1953c65d78/icons/heart-tumblr.svg"
-                    alt=""
-                  />
-                </button>
-              </div>
-            </header>
-
-            <div className="post__body">
-              <img
-                className="post__img"
-                src="https://raw.githubusercontent.com/Javieer57/create-post-component/design/2010/img/liz-lee.jpg"
-                alt=""
-              />
-              <a
-                href="https://es.wikipedia.org/wiki/My_Life_as_Liz"
-                className="post__text"
-              >
-                My Life As Liz
-              </a>
-            </div>
-
-            <div className="post__footer">
-              <span>#2010s</span>
-              <span>#tumblr</span>
-              <span>#codepen</span>
-            </div>
-          </div>
+          <PostFetching />
         </article>
       </section>
       <div className="mt-5 w-30">
