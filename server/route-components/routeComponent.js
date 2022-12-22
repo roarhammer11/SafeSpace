@@ -8,7 +8,7 @@ router.get("/accounts/:accountId", accountController.findById);
 // router.get("/", (req, res) => {
 //   res.json({message: "Hello from server!"});
 // });
-router.get("/login", accountController.findByEmailAndPassword);
+router.post("/login", accountController.findByEmailAndPassword);
 router.post("/createPost", postController.create);
 // http://localhost:3001/api/posts/
 router.get("/posts", postController.findAll);

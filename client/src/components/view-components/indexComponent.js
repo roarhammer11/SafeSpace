@@ -71,7 +71,8 @@ const Index = () => {
     })
       .then((response) => {
         if (response.status === 200) {
-          alert("Successfuly logged in!.");
+          alert("Successfuly logged in!");
+          window.location.href ="/Dashboard";
         } else {  
           alert("Server could not process at the moment :<");
         }
