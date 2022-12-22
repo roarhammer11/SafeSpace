@@ -69,12 +69,13 @@ const Index = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => {
-        if (response.status === 200) {
-          alert("Successfuly logged in!");
-          window.location.href ="/Dashboard";
-        } else {  
-          alert("Server could not process at the moment :<");
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert("Successfully logged in!");
+          window.location.href = "/Dashboard";
+        } else {
+          alert("Invalid email or password.");
         }
       })
       .catch((error) => {

@@ -60,9 +60,12 @@ exports.findByEmailAndPassword = function (req, res) {
   Account.findByEmailAndPassword(newAccount["email"], newAccount["password"], function (err, count) {
     if (err) {
       res.send(err);
+    } else if (count > 0) {
+      res.status(200).json({ success: true });
     } else {
-      res.send(200);
+      res.status(401).json({ success: false });
     }
   });
 };
+
 
