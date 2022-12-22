@@ -8,21 +8,33 @@ function PostFetching() {
   const fetchData = useCallback(() => {
     axios
       .get("http://localhost:3001/api/posts/")
-      .then((res) => {
-        console.log(res.data);
+      .then(async (res) => {
         var data = res.data.data;
-        setPosts(createPosts(data));
+        const users = await fetchUsers(data);
+        setPosts(createPosts(data, users));
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const createPosts = (data) => {
+  const fetchUsers = async (data) => {
+    var promise = [];
+    var names = [];
+    for (var i = 0; i < data.length; i++) {
+      promise[i] = await axios.get(
+        "http://localhost:3001/api/accounts/" + data[i].accountId
+      );
+      names.push(promise[i].data.data[0].userName);
+    }
+    return names;
+  };
+
+  const createPosts = (data, users) => {
     var posts = [];
     for (var i = 0; i < data.length; i++) {
       posts.push(
-        <div>
+        <div key={i}>
           <img
             className="post__avatar"
             src="https://raw.githubusercontent.com/Javieer57/create-post-component/design/2010/img/avatar-tumblr.png"
@@ -30,7 +42,7 @@ function PostFetching() {
           />
           <div className="post__content">
             <header className="post__header">
-              <p className="post__user">galactiqangel</p>
+              <p className="post__user">{users[i]}</p>
               <div className="post__meta">
                 <p className="post__reblogs">3,908</p>
 
