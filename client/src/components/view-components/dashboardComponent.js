@@ -14,7 +14,9 @@ const Dashboard = () => {
   const handleMessageFormChange = (event) => {
     const name = event.target.name;
     var value = event.target.value;
-    setInputs((values) => ({...values, [name]: value}));
+    // console.log(event)
+    const accountId = sessionStorage.getItem("accountId");
+    setInputs((values) => ({...values, [name]: value, accountId: accountId}));
   };
 
   const handlePostSubmit = (event) => {
@@ -37,13 +39,14 @@ const Dashboard = () => {
       .then((response) => {
         if (response.status === 200) {
           alert("Successfuly published your post!");
-        } else {  
+        } else {
           alert("Server could not process at the moment");
         }
       })
       .catch((error) => {
         console.log(error);
       });
+    console.log(inputs);
   }
 
   return (

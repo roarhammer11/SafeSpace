@@ -56,16 +56,17 @@ exports.findById = function (req, res) {
 
 exports.findByEmailAndPassword = function (req, res) {
   const newAccount = new Account(req.body);
-
-  Account.findByEmailAndPassword(newAccount["email"], newAccount["password"], function (err, count) {
-    if (err) {
-      res.send(err);
-    } else if (count > 0) {
-      res.status(200).json({ success: true });
-    } else {
-      res.status(401).json({ success: false });
+  Account.findByEmailAndPassword(
+    newAccount["email"],
+    newAccount["password"],
+    function (err, count, accountId) {
+      if (err) {
+        res.send(err);
+      } else if (count > 0) {
+        res.status(200).json({success: true, accountId});
+      } else {
+        res.status(401).json({success: false});
+      }
     }
-  });
+  );
 };
-
-

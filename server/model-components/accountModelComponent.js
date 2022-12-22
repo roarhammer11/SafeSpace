@@ -58,14 +58,13 @@ class Account {
   }
 
   static findByEmailAndPassword(email, password, result) {
-    const query = 'SELECT * FROM accounts WHERE email = ? AND password = ?';
+    const query = "SELECT * FROM accounts WHERE email = ? AND password = ?";
     dbConn.query(query, [email, password], function (err, res) {
       if (err) {
         console.log(err);
         result(err, null);
       } else {
-        console.log(res);
-        result(null, res.length);
+        result(null, res.length, Object.values(res)[0].accountId);
       }
     });
   }

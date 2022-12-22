@@ -1,6 +1,6 @@
 // import Button from "../non-route-components/buttonComponent";
 import "../css-components/usersForm.css";
-import {useState} from "react";
+import {useState,} from "react";
 
 // import ReactDOM from "react-dom/client";
 const Index = () => {
@@ -49,6 +49,7 @@ const Index = () => {
         console.log(error);
       });
   }
+  
 
   const handleLoginFormChange = (event) => {
     const name = event.target.name;
@@ -73,7 +74,9 @@ const Index = () => {
       .then((data) => {
         if (data.success) {
           alert("Successfully logged in!");
+          // console.log(data.accountId);
           window.location.href = "/Dashboard";
+          sessionStorage.setItem("accountId", data.accountId);
         } else {
           alert("Invalid email or password.");
         }

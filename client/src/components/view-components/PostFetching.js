@@ -102,7 +102,6 @@ function PostFetching() {
         <div className="post__content">
           <header className="post__header">
             <p className="post__user">galactiqangel</p>
-
             <div className="post__meta">
               <p className="post__reblogs">3,908</p>
 
