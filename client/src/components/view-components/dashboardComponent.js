@@ -13,12 +13,7 @@ const Dashboard = () => {
 
   const handleMessageFormChange = (event) => {
     const name = event.target.name;
-    var value;
-    if (name === "userType") {
-      value = event.target.options[event.target.selectedIndex].text;
-    } else {
-      value = event.target.value;
-    }
+    var value = event.target.value;
     setInputs((values) => ({...values, [name]: value}));
   };
 
@@ -38,9 +33,7 @@ const Dashboard = () => {
       .then((response) => {
         if (response.status === 200) {
           alert("Successfuly published your post!");
-        } else if (response.status === 409) {
-          alert("Email already exists.");
-        } else {
+        } else {  
           alert("Server could not process at the moment");
         }
       })
@@ -94,7 +87,7 @@ const Dashboard = () => {
         </form>
       </section>
 
-      <PostFetching />
+      {/* <PostFetching /> */}
 
       <section id="posts-container">
         <article className="post">
