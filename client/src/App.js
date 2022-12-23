@@ -1,6 +1,6 @@
 import "./App.css";
-import React, {Suspense, lazy} from "react";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // create express app
 const Index = lazy(() =>
   import("./components/view-components/indexComponent.js")
@@ -20,6 +20,10 @@ const MentalDisordersFilter = lazy(() =>
 const Explore = lazy(() =>
   import("./components/view-components/exploreComponent")
 );
+
+const Settings = lazy(() =>
+  import("./components/view-components/settingsComponent")
+);
 const App = () => (
   <Router>
     <Suspense fallback={<div>Loading...</div>}>
@@ -36,6 +40,7 @@ const App = () => (
           element={<MentalDisordersFilter />}
         />
         <Route path="/Dashboard/Explore" element={<Explore />} />
+        <Route path="/Dashboard/Settings" element={<Settings />} />
       </Routes>
     </Suspense>
   </Router>

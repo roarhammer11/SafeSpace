@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 const mysql = require("mysql2");
 //local mysql db connection
 const dbConn = mysql.createConnection({
@@ -11,7 +11,6 @@ dbConn.connect(function (err) {
   if (err) throw err;
   console.log("Database Connected!");
   console.log(err);
-  console.log(dbConn);
+  // console.log(dbConn);
 });
-module.exports =  dbConn;
-
+module.exports = dbConn;

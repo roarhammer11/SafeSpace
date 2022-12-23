@@ -64,7 +64,25 @@ class Account {
         console.log(err);
         result(err, null);
       } else {
-        result(null, res.length, Object.values(res)[0].accountId);
+        result(
+          null,
+          res.length,
+          Object.values(res)[0]?.accountId,
+          Object.values(res)[0]?.status
+        );
+      }
+    });
+  }
+
+  static disableAccount(accountId, status, result) {
+    const query = "UPDATE accounts SET status = ? WHERE accountId = ?";
+    dbConn.query(query, [status, accountId], (err, res) => {
+      if (err) {
+        console.log(err);
+        result(err, null);
+      } else {
+        console.log(res);
+        result(null, res);
       }
     });
   }

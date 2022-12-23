@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2022 at 04:15 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Dec 23, 2022 at 05:04 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,31 +32,32 @@ CREATE TABLE `accounts` (
   `userName` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `userType` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `userType` varchar(50) NOT NULL,
+  `status` enum('enabled','disabled') NOT NULL DEFAULT 'enabled'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`accountId`, `userName`, `email`, `password`, `userType`) VALUES
-(2, 'Ash151515', 'roarhammer11@gmail.com', '123', 'Mental Health Professional'),
-(6, '1', '1@1', '1', 'Not a Mental Health Professional'),
-(7, 'test', 'test@test', 'test', 'Mental Health Professional'),
-(8, 'agrande', 'agrande@gmail.com', 'agrande', 'Not a Mental Health Professional'),
-(9, 'tswift', 'tswift@gmail.com', 'tswift', 'Mental Health Professional'),
-(10, 'lanadelray', 'lanadelray@gmail.com', 'lanadelray', 'Not a Mental Health Professional'),
-(11, 'ladygaga', 'ladygaga@gmail.com', 'ladygaga', 'Not a Mental Health Professional'),
-(12, 'beilish', 'beilish@gmail.com', 'beilish', 'Not a Mental Health Professional'),
-(13, 'hannah', 'hbaker@gmail.com', 'hbaker', 'Not a Mental Health Professional'),
-(14, 'nnelson', 'nnelson@gmail.com', 'nnelson', 'Not a Mental Health Professional'),
-(15, 'cspring', 'cspring@gmail.com', 'cspring', 'Not a Mental Health Professional'),
-(16, 'adele', 'adele@gmail.com', 'adele', 'Mental Health Professional'),
-(17, 'charlie', 'charlie@gmail.com', 'charlie', 'Not a Mental Health Professional'),
-(18, 'nick', 'nick@gmail.com', 'nick', 'Not a Mental Health Professional'),
-(19, 'elle', 'elle@gmail.com', 'elle', 'Not a Mental Health Professional'),
-(20, 'slay', 'slay@gmail.com', 'slay', 'Not a Mental Health Professional'),
-(21, 'yas', 'yas@gmail.com', 'yas', 'Not a Mental Health Professional');
+INSERT INTO `accounts` (`accountId`, `userName`, `email`, `password`, `userType`, `status`) VALUES
+(2, 'Ash151515', 'roarhammer11@gmail.com', '123', 'Mental Health Professional', 'enabled'),
+(6, '1', '1@1', '1', 'Not a Mental Health Professional', 'enabled'),
+(7, 'test', 'test@test', 'test', 'Mental Health Professional', 'disabled'),
+(8, 'agrande', 'agrande@gmail.com', 'agrande', 'Not a Mental Health Professional', 'enabled'),
+(9, 'tswift', 'tswift@gmail.com', 'tswift', 'Mental Health Professional', 'enabled'),
+(10, 'lanadelray', 'lanadelray@gmail.com', 'lanadelray', 'Not a Mental Health Professional', 'enabled'),
+(11, 'ladygaga', 'ladygaga@gmail.com', 'ladygaga', 'Not a Mental Health Professional', 'enabled'),
+(12, 'beilish', 'beilish@gmail.com', 'beilish', 'Not a Mental Health Professional', 'enabled'),
+(13, 'hannah', 'hbaker@gmail.com', 'hbaker', 'Not a Mental Health Professional', 'enabled'),
+(14, 'nnelson', 'nnelson@gmail.com', 'nnelson', 'Not a Mental Health Professional', 'enabled'),
+(15, 'cspring', 'cspring@gmail.com', 'cspring', 'Not a Mental Health Professional', 'enabled'),
+(16, 'adele', 'adele@gmail.com', 'adele', 'Mental Health Professional', 'enabled'),
+(17, 'charlie', 'charlie@gmail.com', 'charlie', 'Not a Mental Health Professional', 'enabled'),
+(18, 'nick', 'nick@gmail.com', 'nick', 'Not a Mental Health Professional', 'enabled'),
+(19, 'elle', 'elle@gmail.com', 'elle', 'Not a Mental Health Professional', 'enabled'),
+(20, 'slay', 'slay@gmail.com', 'slay', 'Not a Mental Health Professional', 'enabled'),
+(21, 'yas', 'yas@gmail.com', 'yas', 'Not a Mental Health Professional', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,7 @@ CREATE TABLE `posts` (
   `accountId` int(11) NOT NULL,
   `message` varchar(500) NOT NULL,
   `image` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `posts`

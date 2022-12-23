@@ -1,6 +1,6 @@
 // import Button from "../non-route-components/buttonComponent";
 import "../css-components/usersForm.css";
-import {useState,} from "react";
+import { useState } from "react";
 
 // import ReactDOM from "react-dom/client";
 const Index = () => {
@@ -14,7 +14,7 @@ const Index = () => {
     } else {
       value = event.target.value;
     }
-    setInputs((values) => ({...values, [name]: value}));
+    setInputs((values) => ({ ...values, [name]: value }));
   };
 
   const handleSignUpFormSubmit = (event) => {
@@ -49,12 +49,11 @@ const Index = () => {
         console.log(error);
       });
   }
-  
 
   const handleLoginFormChange = (event) => {
     const name = event.target.name;
     var value = event.target.value;
-    setInputs((values) => ({...values, [name]: value}));
+    setInputs((values) => ({ ...values, [name]: value }));
   };
 
   const handleLoginFormSubmit = (event) => {
@@ -72,17 +71,22 @@ const Index = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log({ data });
         if (data.success) {
-          alert("Successfully logged in!");
-          // console.log(data.accountId);
-          window.location.href = "/Dashboard";
-          sessionStorage.setItem("accountId", data.accountId);
+          if (data.accountStatus === "disabled") {
+            alert("Account has been disabled.");
+          } else {
+            alert("Successfully logged in!");
+            window.location.href = "/Dashboard";
+            sessionStorage.setItem("accountId", data.accountId);
+          }
         } else {
           alert("Invalid email or password.");
         }
       })
       .catch((error) => {
         console.log(error);
+        alert("Server cannot process at the moment.");
       });
   }
 
