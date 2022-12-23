@@ -71,17 +71,22 @@ const Index = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log({ data });
         if (data.success) {
-          alert("Successfully logged in!");
-          console.log(data.account);
-          window.location.href = "/Dashboard";
-          sessionStorage.setItem("accountId", data.accountId);
+          if (data.accountStatus === "disabled") {
+            alert("Account has been disabled.");
+          } else {
+            alert("Successfully logged in!");
+            window.location.href = "/Dashboard";
+            sessionStorage.setItem("accountId", data.accountId);
+          }
         } else {
           alert("Invalid email or password.");
         }
       })
       .catch((error) => {
         console.log(error);
+        alert("Server cannot process at the moment.");
       });
   }
 

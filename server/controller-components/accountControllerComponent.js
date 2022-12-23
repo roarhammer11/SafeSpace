@@ -59,14 +59,26 @@ exports.findByEmailAndPassword = function (req, res) {
   Account.findByEmailAndPassword(
     newAccount["email"],
     newAccount["password"],
-    function (err, count, accountId, account) {
+    function (err, count, accountId, accountStatus) {
       if (err) {
-        res.send(err);
+        // res.send(err);
+        res.status(401).json({ success: false });
       } else if (count > 0) {
-        res.status(200).json({ success: true, accountId, account });
+        res.status(200).json({ success: true, accountId, accountStatus });
       } else {
         res.status(401).json({ success: false });
       }
     }
   );
+};
+
+exports.disableAccount = (req, res) => {
+  console.log(req.body);
+  Account.disableAccount(req.body.userId, req.body.status, (err, data) => {
+    if (err) {
+      res.json({ err });
+    } else {
+      res.json({ status: 200, data });
+    }
+  });
 };

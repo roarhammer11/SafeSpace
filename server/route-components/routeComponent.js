@@ -12,5 +12,5 @@ router.post("/login", accountController.findByEmailAndPassword);
 router.post("/createPost", postController.create);
 // http://localhost:3001/api/posts/
 router.get("/posts", postController.findAll);
-router.patch("/disabledAccount", accountController.disabledAccount);
+router.patch("/disableAccount", accountController.disableAccount);
 module.exports = router;

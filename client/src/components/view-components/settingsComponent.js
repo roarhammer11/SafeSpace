@@ -7,7 +7,7 @@ function settingsComponent() {
       method: "PATCH",
       body: JSON.stringify({
         status: "disabled",
-        userId: localStorage.getItem("user_id"),
+        userId: sessionStorage.getItem("accountId"),
       }),
       headers: {
         "Content-Type": "application/json",
