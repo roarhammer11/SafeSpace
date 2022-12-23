@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import UserPanel from "../non-route-components/userPanelComponent";
 
-function settingsComponent() {
+function SettingsComponent() {
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(!openModal);
+  };
+
   const handleOnClick = () => {
     fetch("/api/disableAccount", {
       method: "PATCH",
@@ -33,10 +39,32 @@ function settingsComponent() {
             <button
               className="btn btn-primary btn-lg w-50"
               name="Disable Account"
-              onClick={handleOnClick}
+              onClick={handleOpenModal}
             >
               Disable Account
             </button>
+            {openModal && (
+              <div className=" d-flex flex-column align-items-center">
+                <h4 className="mt-5 mb-5">
+                  Are you sure you want to disable your account?
+                </h4>
+                <button
+                  className="btn btn-primary btn-lg w-50"
+                  name="Disable Account"
+                  onClick={handleOnClick}
+                >
+                  Yes
+                </button>
+                <div className="w-70 p-3 ms-5 h-100" />
+                <button
+                  className="btn btn-primary btn-lg w-50"
+                  name="No"
+                  onClick={handleOpenModal}
+                >
+                  No
+                </button>
+              </div>
+            )}
           </div>
         </div>
         <div className="mt-5 w-30">
@@ -47,4 +75,4 @@ function settingsComponent() {
   );
 }
 
-export default settingsComponent;
+export default SettingsComponent;
