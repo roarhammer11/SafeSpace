@@ -61,7 +61,6 @@ exports.findByEmailAndPassword = function (req, res) {
     newAccount["password"],
     function (err, count, accountId, accountStatus) {
       if (err) {
-        // res.send(err);
         res.status(401).json({ success: false });
       } else if (count > 0) {
         res.status(200).json({ success: true, accountId, accountStatus });
