@@ -64,7 +64,7 @@ class Account {
         console.log(err);
         result(err, null);
       } else {
-        result(null, res.length, Object.values(res)[0].accountId);
+        result(null, res.length, Object.values(res)[0].accountId, res);
       }
     });
   }
